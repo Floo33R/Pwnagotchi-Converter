@@ -1,11 +1,15 @@
 # Pwnagotchi-Converter
 Script to download and convert handshakes from your Pwnagotchi.
+* convert2hccapx.sh used to convert \*.pcap-files to \*.hccapx-files
+* downloadPCAP.sh used to download the \*.pcap-files and convert them to \*.hccapx-files
 
 ## Table of contents
 * [General info](#general-info)
 * [Setup on your local machine](#Setup-on-your-local-machine)
 * [Setup Hashcat](#Setup-Hashcat)
 * [Setup on your Pwnagotchi](#Setup-on-your-Pwnagotchi)
+* [Usage of convert2hccapx.sh](#Usage-of-convert2hccapx.sh)
+* [Usage of downloadPCAP.sh](#Usage-of-downloadPCAP.sh)
 
 ## General info
 These two scripts should help to download the handshakes from your Pwnagotchi. 
@@ -26,3 +30,15 @@ $ %HOME/.ssh/pwnagotchi.key.pub pi@pwnagotchi:~/.ssh/authorized_keys
 
 ## Setup on your Pwnagotchi
 If you want to use the same file locations as me, you have to change the location where your Pwnagotchi saves your captured handshakes.
+
+## Usage of convert2hccapx.sh
+If you only want to convert your \*.pcap files to \*.hccapx you should use this little scipt. You have to launch it in the folder with the \*.pcap files from your Pwnagotchi. It will create a new folder called "hccapx" where all converted files are located. Furthermore it will create a **log.txt** file and a **combinded.hccapx**. The log file contains every error and success of the script. The combinded.hccapx file contains all \*.hccapx files combinded into one file. So, you are able to crack multiple hashes at once.
+
+Usage of the command:
+**`$ ./convert2hccapx.sh`**
+
+## Usage of downloadPCAP.sh
+If you want to download all handshakes from your Pwnagotchi to your local machine and convert them you should use this script. At first this script creates a Zip-folder from the pcap files over SSH. Than it will copy them to your local machine with Secure Copy Protocol (SCP). The files will be saved in `~/Downloads/handshakes/`. The file name of the downloaded file is marked with a timestamp at the end. Then it removes the Zip-folder from your Pwnagotchi to save space. Now it moves over to your local machine and starts to unzip the folder. It will do now the same as the [convert2hccapx.sh](#Usage-of-downloadPCAP.sh) script. Only the name of the log file changed to convert.log instead of log.txt. At the end it moves the log-file, the combinded.hccapx and the hccapx folder into the root directory of the handshakes.
+
+Usage of the command:
+**`$ ./downloadPCAP.sh`**

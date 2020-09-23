@@ -1,7 +1,7 @@
 # Pwnagotchi-Converter
 Script to download and convert handshakes from your Pwnagotchi.
-* convert2hccapx.sh used to convert \*.pcap-files to \*.hccapx-files
-* downloadPCAP.sh used to download the \*.pcap-files and convert them to \*.hccapx-files
+* **convert2hccapx.sh** used to convert \*.pcap-files to \*.hccapx-files
+* **downloadPCAP.sh** used to download the \*.pcap-files and convert them to \*.hccapx-files
 
 ## Table of contents
 * [General info](#general-info)
@@ -38,7 +38,7 @@ Usage of the command:
 **`$ ./convert2hccapx.sh`**
 
 ## Usage of downloadPCAP
-If you want to download all handshakes from your Pwnagotchi to your local machine and convert them you should use this script. At first this script creates a Zip-folder from the pcap files over SSH. Than it will copy them to your local machine with Secure Copy Protocol (SCP). The files will be saved in `~/Downloads/handshakes/`. The file name of the downloaded file is marked with a timestamp at the end. Then it removes the Zip-folder from your Pwnagotchi to save space. Now it moves over to your local machine and starts to unzip the folder. It will do now the same as the [convert2hccapx.sh](#Usage-of-downloadPCAP.sh) script. Only the name of the log file changed to convert.log instead of log.txt. At the end it moves the log-file, the combinded.hccapx and the hccapx folder into the root directory of the handshakes.
+If you want to download all handshakes from your Pwnagotchi to your local machine and convert them you should use this script. At first this script creates a Zip-folder from the pcap files over SSH. Than it will copy them to your local machine with Secure Copy Protocol (SCP). The files will be saved in `~/Downloads/handshakes/`. The file name of the downloaded file is marked with a timestamp at the end. Then it removes the Zip-folder from your Pwnagotchi to save space. Now it moves over to your local machine and starts to unzip the folder. It will do now the same as the [convert2hccapx.sh](#Usage-of-downloadPCAP) script. Only the name of the log file changed to convert.log instead of log.txt. At the end it moves the log-file, the combinded.hccapx and the hccapx folder into the root directory of the handshakes.
 
 Usage of the command:
 **`$ ./downloadPCAP.sh`**

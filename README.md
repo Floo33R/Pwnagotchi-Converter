@@ -1,5 +1,5 @@
-# Pwnagotchi
-Script to download handshakes from your Pwnagotchi
+# Pwnagotchi-Converter
+Script to download and convert handshakes from your Pwnagotchi.
 
 ## Table of contents
 * [General info](#general-info)
@@ -23,8 +23,6 @@ Now there should be two files in this folder`~/.ssh/`. The **pwnagotchi.key** an
 ```
 $ %HOME/.ssh/pwnagotchi.key.pub pi@pwnagotchi:~/.ssh/authorized_keys
 ```
-
-## Setup Hashcat
 
 ## Setup on your Pwnagotchi
 If you want to use the same file locations as me, you have to change the location where your Pwnagotchi saves your captured handshakes.

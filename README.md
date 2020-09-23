@@ -8,8 +8,8 @@ Script to download and convert handshakes from your Pwnagotchi.
 * [Setup on your local machine](#Setup-on-your-local-machine)
 * [Setup Hashcat](#Setup-Hashcat)
 * [Setup on your Pwnagotchi](#Setup-on-your-Pwnagotchi)
-* [Usage of convert2hccapx](#Usage-of-convert2hccapx.sh)
-* [Usage of downloadPCAP](#Usage-of-downloadPCAP.sh)
+* [Usage of convert2hccapx](#Usage-of-convert2hccapx)
+* [Usage of downloadPCAP](#Usage-of-downloadPCAP)
 
 ## General info
 These two scripts should help to download the handshakes from your Pwnagotchi. 

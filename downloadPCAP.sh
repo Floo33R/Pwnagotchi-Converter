@@ -9,7 +9,7 @@
 #!/bin/bash
 
 FILES=./*
-EXT=".pcap"
+EXT_PCAP=".pcap"
 
 NOW=$(date +"%m-%d-%y"_"%T")
 NAME="handshakes_"
@@ -33,9 +33,13 @@ touch convert.log
 mkdir hccapx
 for f in $FILES
 do
-  echo "Processing $f"
+  
   FileName=$f
-  cap2hccapx ./$f ./hccapx/${FileName/.pcap}.hccapx >> ./hccapx/convert.log
+  if [[ "${FileName##*.}" == "$EXT_PCAP"]];
+  then
+    echo "Processing $f"
+    cap2hccapx ./$f ./hccapx/${FileName/.pcap}.hccapx >> ./hccapx/convert.log
+  fi
 done
 
 cd ./hccapx

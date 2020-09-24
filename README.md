@@ -29,7 +29,12 @@ $ %HOME/.ssh/pwnagotchi.key.pub pi@pwnagotchi:~/.ssh/authorized_keys
 ```
 
 ## Setup on your Pwnagotchi
-If you want to use the same file locations as me, you have to change the location where your Pwnagotchi saves your captured handshakes.
+To save the captured handshakes, like me, in this directory `/home/pi/handshakes` you have to modify the `config.toml` file. For this you need the following command.
+
+```
+$ sudo nano /etc/pwnagotchi/config.toml
+```
+With this command the nano editor opens to edit the file. In there you have to find the line `bettercap.handshakes = ""`. The default location of the handshakes is the `/root/handshakes` directory. In my case I changed it to `bettercap.handshakes = "/home/pi/handshakes"` because it's much easier with the file ownership and the permissions.
 
 ## Usage of convert2hccapx
 If you only want to convert your \*.pcap files to \*.hccapx you should use this little scipt. You have to launch it in the folder with the \*.pcap files from your Pwnagotchi. It will create a new folder called "hccapx" where all converted files are located. Furthermore it will create a **log.txt** file and a **combinded.hccapx**. The log file contains every error and success of the script. The combinded.hccapx file contains all \*.hccapx files combinded into one file. So, you are able to crack multiple hashes at once.

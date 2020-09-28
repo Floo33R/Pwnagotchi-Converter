@@ -22,10 +22,14 @@ At first you have to create a private and a public ssh key. It will prompt for t
 $ ssh-keygen -t rsa -b 4096 -f ~/.ssh/pwnagotchi.key
 ```
 **Keep your private key always safe, don't give it away! Don't share it!**
-Now there should be two files in this folder`~/.ssh/`. The **pwnagotchi.key** and the **pwnagotchi.key.pub** file. You need install the public key on your remote server, your Pwnagotchi. The following command adds the public key to the authorized keys on your remote Pwnagotchi. 
+Now there should be two files in this folder`~/.ssh/`. The **pwnagotchi.key** and the **pwnagotchi.key.pub** file. You need install the public key on your remote server, your Pwnagotchi. The following command adds the public key to the authorized keys on your remote Pwnagotchi. Don't forget to change the IP-address of your little device.
 
 ```
-$ %HOME/.ssh/pwnagotchi.key.pub pi@pwnagotchi:~/.ssh/authorized_keys
+$ %HOME/.ssh/pwnagotchi.key.pub pi@10.0.0.5:~/.ssh/authorized_keys
+```
+If the above command doesn't work, you have to use this command:
+```
+$ ssh-copy-id pi@10.0.0.5
 ```
 
 ## Setup on your Pwnagotchi
@@ -43,7 +47,7 @@ Usage of the command:
 **`$ ./convert2hccapx.sh`**
 
 ## Usage of downloadPCAP
-If you want to download all handshakes from your Pwnagotchi to your local machine and convert them you should use this script. At first this script creates a Zip-folder from the pcap files over SSH. Than it will copy them to your local machine with Secure Copy Protocol (SCP). The files will be saved in `~/Downloads/handshakes/`. The file name of the downloaded file is marked with a timestamp at the end. Then it removes the Zip-folder from your Pwnagotchi to save space. Now it moves over to your local machine and starts to unzip the folder. It will do now the same as the [convert2hccapx.sh](#Usage-of-downloadPCAP) script. The only thing I've added to this script is, that only \*.pcap are converted. So, there are no error messages anymore. Only the name of the log file changed to convert.log instead of log.txt. At the end it moves the log-file, the combinded.hccapx and the hccapx folder into the root directory of the handshakes.
+If you want to download all handshakes from your Pwnagotchi to your local machine and convert them you should use this script. At first this script creates a Tar-folder from the pcap files over SSH. Than it will copy them to your local machine with Secure Copy Protocol (SCP). The files will be saved in `~/Downloads/handshakes/`. The file name of the downloaded file is marked with a timestamp at the end. Then it removes the Tar-folder from your Pwnagotchi to save space. Now it moves over to your local machine and starts to unzip the folder. It will do now the same as the [convert2hccapx.sh](#Usage-of-downloadPCAP) script. The only thing I've added to this script is, that only \*.pcap are converted. So, there are no error messages anymore. Only the name of the log file changed to convert.log instead of log.txt. At the end it moves the log-file, the combinded.hccapx and the hccapx folder into the root directory of the handshakes.
 
 Usage of the command:
 **`$ ./downloadPCAP.sh`**

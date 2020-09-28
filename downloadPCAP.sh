@@ -11,21 +11,24 @@
 FILES=./*
 EXT_PCAP=".pcap"
 
-NOW=$(date +"%m-%d-%y"_"%T")
+NOW=$(date +"%m-%d-%y"_"%H-%M-%S")
 NAME="handshakes_"
 EXT=".zip"
 
 FILENAME="$NAME$NOW$EXT"
 FILE="$NAME$NOW"
 
-ssh pi@10.0.0.5 "zip -r $FILENAME handshakes"
+#ssh pi@10.0.0.5 "zip -r $FILENAME handshakes"
+ssh pi@10.0.0.5 "tar -cvf $FILENAME handshakes"
 
 scp pi@10.0.0.5:${FILENAME} ~/Downloads/handshakes
 
 ssh pi@10.0.0.5 "rm -rf $FILENAME"
 
 cd ~/Downloads/handshakes/
-unzip ${FILENAME} -d ./$FILE
+mkdir %{FILE}
+#unzip ${FILENAME} -d ./$FILE
+tar -xvf %{FILENAME} -C ${FILE}
 cd ${FILE}
 
 cd handshakes

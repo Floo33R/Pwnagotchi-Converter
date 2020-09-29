@@ -14,19 +14,23 @@ function usage {
   echo '    -h   shows this help'
   echo '    -d   used to define the output directory'
   echo '    -p   used to define the Pwnagotchis IP-address, default it is 10.0.0.5'
-  echo '    -v   verbose mode on'
+  #echo '    -v   verbose mode on'
+return 0
 }
 
-function print_out{
-  local MESSAGE="${@}"
-  if [[ "${VERBOSE}" == true ]]
-  then
-    echo "${MESSAGE}"
-  fi
-}
+# function print_out{
+#    local MESSAGE="${@}"
+#    if [[ "${VERBOSE}" == true ]]
+#    then
+#      echo "${MESSAGE}"
+#    fi
+# }
 
-if [[ ${#} -eq 0 ]]
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]
 then
+  usage
+else
+  echo "Incorrect input provided!"
   usage
 fi
 
@@ -35,23 +39,23 @@ optstring="hdp"
 
 while getopts ${optstring} arg; do
   case "${arg}" in
-    h) usage
+    -h) usage
        ;;
-    d) LOCATION="${OPTARG}"
-       print_out $LOCATIOn
+    -d) LOCATION=$1
+       echo $LOCATION
        ;;
-    p) IP="${OPTARG}"
-       print_out $IP
+    -p) IP=$1
+       echo $IP
        ;;
-    v) VERBOSE='true'
-       print_out "Verbose mode is ON"
-       ;;
+    # v) VERBOSE='true'
+    #    print_out "Verbose mode is ON"
+    #    ;;
     ?) 
       echo "Invalid option: -${OPTARG}."
       echo
       usage
       ;;
-  easc
+  esac
 done
 
 
@@ -80,18 +84,18 @@ scp pi@$IP:${FILENAME} $LOCATION
 
 ssh pi@$IP "rm -rf $FILENAME"
 
-if [ -n "$1" ]
-then 
-  if [ -d $1 ]
-  then
-    echo "Using entered path: $1"
-    $LOCATION=$1
-  else
-    echo -e "${RED}No valid path entered! Using default path!${NC}"
-  fi
-else
-  echo -e "${RED}No path entered! Using default path!${NC}"
-fi
+# if [ -n "$1" ]
+# then 
+#   if [ -d $1 ]
+#   then
+#     echo "Using entered path: $1"
+#     $LOCATION=$1
+#   else
+#     echo -e "${RED}No valid path entered! Using default path!${NC}"
+#   fi
+# else
+#   echo -e "${RED}No path entered! Using default path!${NC}"
+# fi
 
 cd $LOCATION
 

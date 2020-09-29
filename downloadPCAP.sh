@@ -8,6 +8,10 @@
 #need to add your public ssh key to your pwnagotchi
 #!/bin/bash
 
+#colors for output
+RED='\033[0;31m'
+NC='\033[0m'  #No color
+
 FILES=./*
 EXT_PCAP=".pcap"
 
@@ -29,13 +33,14 @@ if [ -n "$1" ]
 then 
   if [ -d $1 ]
   then
+    echo "Using entered path: $1"
     cd $1
   else
-    echo "No valid path entered! Using default path!"
+    echo -e "${RED}No valid path entered! Using default path!${NC}"
     cd ~/Downloads/handshakes/
   fi
 else
-  echo "No path entered! Using default path!"
+  echo "${RED}No path entered! Using default path!${NC}"
   cd ~/Downloads/handshakes/
 fi
 

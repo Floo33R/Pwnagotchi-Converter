@@ -10,13 +10,23 @@
 #!/bin/bash
 
 function usage {
-  echo "Usage: $(basename $0) [-dhp]" 2>&1
+  echo "Usage: $(basename $0) [-dhpv]" 2>&1
   echo '    -h   shows this help'
   echo '    -d   used to define the output directory'
   echo '    -p   used to define the Pwnagotchis IP-address, default it is 10.0.0.5'
+  echo '    -v   verbose mode on'
 }
 
-if [[ ${#} -eq 0]]; then
+function print_out{
+  local MESSAGE="${@}"
+  if [[ "${VERBOSE}" == true ]]
+  then
+    echo "${MESSAGE}"
+  fi
+}
+
+if [[ ${#} -eq 0 ]]
+then
   usage
 fi
 
@@ -26,9 +36,16 @@ optstring="hdp"
 while getopts ${optstring} arg; do
   case "${arg}" in
     h) usage
+       ;;
     d) LOCATION="${OPTARG}"
+       print_out $LOCATIOn
+       ;;
     p) IP="${OPTARG}"
-
+       print_out $IP
+       ;;
+    v) VERBOSE='true'
+       print_out "Verbose mode is ON"
+       ;;
     ?) 
       echo "Invalid option: -${OPTARG}."
       echo

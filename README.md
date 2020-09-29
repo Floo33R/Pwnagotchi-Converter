@@ -32,6 +32,9 @@ If the above command doesn't work, you have to use this command:
 $ ssh-copy-id pi@10.0.0.5
 ```
 
+**NOTE:** If you don't do the steps on your local machine, you have to enter your ssh-passphrase three times.
+
+
 ## Setup on your Pwnagotchi
 To save the captured handshakes, like me, in this directory `/home/pi/handshakes` you have to modify the `config.toml` file. For this you need the following command.
 

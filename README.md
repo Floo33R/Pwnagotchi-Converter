@@ -6,7 +6,7 @@ Script to download and convert handshakes from your Pwnagotchi.
 ## Table of contents
 * [General info](#general-info)
 * [Setup on your local machine](#Setup-on-your-local-machine)
-* [Installing cap2hccapx](#Installing cap2hccapx)
+* [Installing cap2hccapx](#Installing-cap2hccapx)
 * [Setup on your Pwnagotchi](#Setup-on-your-Pwnagotchi)
 * [Usage of convert2hccapx](#Usage-of-convert2hccapx)
 * [Usage of downloadPCAP](#Usage-of-downloadPCAP)

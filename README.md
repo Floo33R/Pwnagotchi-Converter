@@ -12,7 +12,8 @@ Script to download and convert handshakes from your Pwnagotchi.
 * [Usage of downloadPCAP](#Usage-of-downloadPCAP)
 
 ## General info
-These two scripts should help to download the handshakes from your Pwnagotchi. 
+These three scripts should help to download the handshakes from your Pwnagotchi. 
+If you only got a few handshakes to convert, you could use the [online converter tool](https://hashcat.net/cap2hccapx/), provided by hashcat.
 
 ## Setup on your local machine
 To run this script, you need to change some values in the script.
@@ -34,6 +35,21 @@ $ ssh-copy-id pi@10.0.0.5
 
 **NOTE:** If you don't do the steps on your local machine, you have to enter your ssh-passphrase three times.
 
+### Installing cap2hccapx
+At first you have to download the source code of cap2hccapx. It's located in the [hashcat-utils](https://github.com/hashcat/hashcat-utils) Github repository. To download it, use the following code.
+```
+cd ~/Downloads
+wget https://raw.githubusercontent.com/hashcat/hashcat-utils/master/src/cap2hccapx.c
+```
+After that you have to compile the source code with C-compiler(gcc). That's very easy. You only have to specify the output filename and the input source file as following. After that you can delet the downloaded source code file.
+```
+gcc -o cap2hccapx cap2hccapx.c
+rm cap2hccapx.c
+```
+Now you are already able to use the tool in the same folder like this: `cap2hccapx`. However, for this script we have to get it globaly accessible. For this I used the easiest way I knew, I moved the compiled file into the `\bin` folder. This is managed with the next command.
+```
+mv cap2hccapx /bin
+```
 
 ## Setup on your Pwnagotchi
 To save the captured handshakes, like me, in this directory `/home/pi/handshakes` you have to modify the `config.toml` file. For this you need the following command.

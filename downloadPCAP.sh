@@ -25,7 +25,20 @@ scp pi@10.0.0.5:${FILENAME} ~/Downloads/handshakes
 
 ssh pi@10.0.0.5 "rm -rf $FILENAME"
 
-cd ~/Downloads/handshakes/
+if [ -n "$1" ]
+then 
+  if [ -d $1 ]
+  then
+    cd $1
+  else
+    echo "No valid path entered! Using default path!"
+    cd ~/Downloads/handshakes/
+  fi
+else
+  echo "No path entered! Using default path!"
+  cd ~/Downloads/handshakes/
+fi
+
 mkdir %{FILE}
 #unzip ${FILENAME} -d ./$FILE
 tar -xvf %{FILENAME} -C ${FILE}

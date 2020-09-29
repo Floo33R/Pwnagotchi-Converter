@@ -6,6 +6,7 @@
 #you may have to change the IP-address
 #need to create a private and public ssh key on your local machine
 #need to add your public ssh key to your pwnagotchi
+
 #!/bin/bash
 
 #colors for output
@@ -40,7 +41,7 @@ then
     cd ~/Downloads/handshakes/
   fi
 else
-  echo "${RED}No path entered! Using default path!${NC}"
+  echo -e "${RED}No path entered! Using default path!${NC}"
   cd ~/Downloads/handshakes/
 fi
 

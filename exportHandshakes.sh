@@ -1,3 +1,4 @@
+#this script aims to copy only valid \*.pcap-files to another directory for a clearer view. Now it's only a sheet for notes!
 #!/bin/bash
 
 #to search where no handshakes were found

@@ -9,10 +9,40 @@
 
 #!/bin/bash
 
+function usage {
+  echo "Usage: $(basename $0) [-dhp]" 2>&1
+  echo '    -h   shows this help'
+  echo '    -d   used to define the output directory'
+  echo '    -p   used to define the Pwnagotchis IP-address, default it is 10.0.0.5'
+}
+
+if [[ ${#} -eq 0]]; then
+  usage
+fi
+
+# list of expected arguments
+optstring="hdp"
+
+while getopts ${optstring} arg; do
+  case "${arg}" in
+    h) usage
+    d) LOCATION="${OPTARG}"
+    p) IP="${OPTARG}"
+
+    ?) 
+      echo "Invalid option: -${OPTARG}."
+      echo
+      usage
+      ;;
+  easc
+done
+
+
 #colors for output
 RED='\033[0;31m'
 NC='\033[0m'  #No color
 
+#var
 FILES=./*
 EXT_PCAP=".pcap"
 
@@ -23,27 +53,30 @@ EXT=".zip"
 FILENAME="$NAME$NOW$EXT"
 FILE="$NAME$NOW"
 
-#ssh pi@10.0.0.5 "zip -r $FILENAME handshakes"
-ssh pi@10.0.0.5 "tar -cvf $FILENAME handshakes"
+IP="10.0.0.5"
+LOCATION="~/Downloads/handshakes/"
 
-scp pi@10.0.0.5:${FILENAME} ~/Downloads/handshakes
+#ssh pi@$IP "zip -r $FILENAME handshakes"
+ssh pi@$IP "tar -cvf $FILENAME handshakes"
 
-ssh pi@10.0.0.5 "rm -rf $FILENAME"
+scp pi@$IP:${FILENAME} $LOCATION
+
+ssh pi@$IP "rm -rf $FILENAME"
 
 if [ -n "$1" ]
 then 
   if [ -d $1 ]
   then
     echo "Using entered path: $1"
-    cd $1
+    $LOCATION=$1
   else
     echo -e "${RED}No valid path entered! Using default path!${NC}"
-    cd ~/Downloads/handshakes/
   fi
 else
   echo -e "${RED}No path entered! Using default path!${NC}"
-  cd ~/Downloads/handshakes/
 fi
+
+cd $LOCATION
 
 mkdir %{FILE}
 #unzip ${FILENAME} -d ./$FILE
@@ -67,5 +100,5 @@ done
 cd ./hccapx
 cat *.hccapx > combinded.hccapx
 
-mv combinded.hccapx convert.log ~/Downloads/handshakes/$FILE
-mv ~/Downloads/handshakes/$FILE/handshakes/hccapx ~/Downloads/handshakes/$FILE
+mv combinded.hccapx convert.log $LOCATION/$FILE
+mv $LOCATION/$FILE/handshakes/hccapx $LOCATION/$FILE

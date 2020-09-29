@@ -35,7 +35,7 @@ $ ssh-copy-id pi@10.0.0.5
 
 **NOTE:** If you don't do the steps on your local machine, you have to enter your ssh-passphrase three times.
 
-### Installing cap2hccapx
+## Installing cap2hccapx
 At first you have to download the source code of cap2hccapx. It's located in the [hashcat-utils](https://github.com/hashcat/hashcat-utils) Github repository. To download it, use the following code.
 ```
 cd ~/Downloads

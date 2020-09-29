@@ -1,3 +1,4 @@
+#With this script you are able to convert \*.pcap-files to \*.hccapx-files to use with Hashcat.
 #!/bin/bash
 
 mkdir hccapx

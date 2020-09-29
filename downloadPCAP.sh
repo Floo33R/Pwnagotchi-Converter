@@ -9,55 +9,17 @@
 
 #!/bin/bash
 
-function usage {
-  echo "Usage: $(basename $0) [-dhpv]" 2>&1
-  echo '    -h   shows this help'
-  echo '    -d   used to define the output directory'
-  echo '    -p   used to define the Pwnagotchis IP-address, default it is 10.0.0.5'
-  #echo '    -v   verbose mode on'
-return 0
+function show_usage (){
+    printf "Usage: $0 [options [parameters]]\n"
+    printf "\n"
+    printf "Options:\n"
+    printf " -d|--destination, used to define the output directory, default value: ~/Downloads/handshakes/\n"
+    printf " -p|--pwnagotchi,  used to define the Pwnagotchis IP-address, default value: 10.0.0.5\n"
+    printf " -v|--verbose, used to start in verbose mode\n"
+    printf " -h|--help, Print help\n"
+
+exit 1
 }
-
-# function print_out{
-#    local MESSAGE="${@}"
-#    if [[ "${VERBOSE}" == true ]]
-#    then
-#      echo "${MESSAGE}"
-#    fi
-# }
-
-if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]
-then
-  usage
-else
-  echo "Incorrect input provided!"
-  usage
-fi
-
-# list of expected arguments
-optstring="hdp"
-
-while getopts ${optstring} arg; do
-  case "${arg}" in
-    -h) usage
-       ;;
-    -d) LOCATION=$1
-       echo $LOCATION
-       ;;
-    -p) IP=$1
-       echo $IP
-       ;;
-    # v) VERBOSE='true'
-    #    print_out "Verbose mode is ON"
-    #    ;;
-    ?) 
-      echo "Invalid option: -${OPTARG}."
-      echo
-      usage
-      ;;
-  esac
-done
-
 
 #colors for output
 RED='\033[0;31m'
@@ -77,30 +39,35 @@ FILE="$NAME$NOW"
 IP="10.0.0.5"
 LOCATION="~/Downloads/handshakes/"
 
-#ssh pi@$IP "zip -r $FILENAME handshakes"
+while [ ! -z "$1" ]
+do
+  case "$1" in
+     -d|--destination)
+         shift
+         LOCATION=$1
+         ;;
+     -p|--pwnagotchi)
+         shift
+         IP=$1
+         ;;
+     *)
+        show_usage
+        ;;
+  esac
+if [ $# -gt 0 ]; then
+  shift
+fi
+done
+
 ssh pi@$IP "tar -cvf $FILENAME handshakes"
 
 scp pi@$IP:${FILENAME} $LOCATION
 
 ssh pi@$IP "rm -rf $FILENAME"
 
-# if [ -n "$1" ]
-# then 
-#   if [ -d $1 ]
-#   then
-#     echo "Using entered path: $1"
-#     $LOCATION=$1
-#   else
-#     echo -e "${RED}No valid path entered! Using default path!${NC}"
-#   fi
-# else
-#   echo -e "${RED}No path entered! Using default path!${NC}"
-# fi
-
 cd $LOCATION
 
 mkdir %{FILE}
-#unzip ${FILENAME} -d ./$FILE
 tar -xvf %{FILENAME} -C ${FILE}
 cd ${FILE}
 

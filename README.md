@@ -2,7 +2,7 @@
 Script to download and convert handshakes from your Pwnagotchi.
 * **convert2hccapx.sh** used to convert \*.pcap-files to \*.hccapx-files
 * **downloadPCAP.sh** used to download the \*.pcap-files and convert them to \*.hccapx-files
-* **exportHandshakes.sh** at the moment only notes. Later do move valid handshakes into another folder.
+* **exportHandshakes.sh** at the moment only notes. Later to move valid handshakes into another folder.
 
 ## Table of contents
 * [General info](#general-info)

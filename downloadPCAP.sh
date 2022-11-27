@@ -73,7 +73,7 @@ cd ${FILE}
 
 cd handshakes
 touch convert.log
-mkdir hccapx
+mkdir hc22000
 for f in $FILES
 do
   
@@ -81,12 +81,12 @@ do
   if [[ "${FileName##*.}" == "$EXT_PCAP"]];
   then
     echo "Processing $f"
-    cap2hccapx ./$f ./hccapx/${FileName/.pcap}.hccapx >> ./hccapx/convert.log
+    cap2hccapx ./$f ./hc22000/${FileName/.pcap}.hc22000 >> ./hccapx/convert.log
   fi
 done
 
 cd ./hccapx
-cat *.hccapx > combinded.hccapx
+cat *.hccapx > combinded.hc22000
 
-mv combinded.hccapx convert.log $LOCATION/$FILE
-mv $LOCATION/$FILE/handshakes/hccapx $LOCATION/$FILE
+mv combinded.hc22000 convert.log $LOCATION/$FILE
+mv $LOCATION/$FILE/handshakes/hc22000 $LOCATION/$FILE

@@ -1,7 +1,7 @@
 # Pwnagotchi-Converter
 Script to download and convert handshakes from your Pwnagotchi.
-* **convert2hccapx.sh** used to convert \*.pcap-files to \*.hccapx-files
-* **downloadPCAP.sh** used to download the \*.pcap-files and convert them to \*.hccapx-files
+* **convert2hccapx.sh** used to convert \*.pcap-files to \*.hc22000-files
+* **downloadPCAP.sh** used to download the \*.pcap-files and convert them to \*.hc22000-files
 * **exportHandshakes.sh** at the moment only notes. Later to move valid handshakes into another folder.
 
 ## Table of contents
@@ -60,14 +60,14 @@ $ sudo nano /etc/pwnagotchi/config.toml
 ```
 With this command the nano editor opens to edit the file. In there you have to find the line `bettercap.handshakes = ""`. The default location of the handshakes is the `/root/handshakes` directory. In my case I changed it to `bettercap.handshakes = "/home/pi/handshakes"` because it's much easier with the file ownership and the permissions.
 
-## Usage of convert2hccapx
-If you only want to convert your \*.pcap files to \*.hccapx you should use this little scipt. You have to launch it in the folder with the \*.pcap files from your Pwnagotchi. It will create a new folder called "hccapx" where all converted files are located. Furthermore it will create a **log.txt** file and a **combinded.hccapx**. The log file contains every error and success of the script. The combinded.hccapx file contains all \*.hccapx files combinded into one file. So, you are able to crack multiple hashes at once.
+## Usage of convert2hc22000
+If you only want to convert your \*.pcap files to \*.hccapx you should use this little scipt. You have to launch it in the folder with the \*.pcap files from your Pwnagotchi. It will create a new folder called "hccapx" where all converted files are located. Furthermore it will create a **log.txt** file and a **combinded.hc22000**. The log file contains every error and success of the script. The combinded.hccapx file contains all \*.hccapx files combinded into one file. So, you are able to crack multiple hashes at once.
 
 Usage of the command:
 **`$ ./convert2hccapx.sh`**
 
 ## Usage of downloadPCAP
-If you want to download all handshakes from your Pwnagotchi to your local machine and convert them you should use this script. At first this script creates a Tar-folder from the pcap files over SSH. Than it will copy them to your local machine with Secure Copy Protocol (SCP). The files will be saved in `~/Downloads/handshakes/`. The file name of the downloaded file is marked with a timestamp at the end. Then it removes the Tar-folder from your Pwnagotchi to save space. Now it moves over to your local machine and starts to unzip the folder. It will do now the same as the [convert2hccapx.sh](#Usage-of-downloadPCAP) script. The only thing I've added to this script is, that only \*.pcap are converted. So, there are no error messages anymore. Only the name of the log file changed to convert.log instead of log.txt. At the end it moves the log-file, the combinded.hccapx and the hccapx folder into the root directory of the handshakes.
+If you want to download all handshakes from your Pwnagotchi to your local machine and convert them you should use this script. At first this script creates a Tar-folder from the pcap files over SSH. Than it will copy them to your local machine with Secure Copy Protocol (SCP). The files will be saved in `~/Downloads/handshakes/`. The file name of the downloaded file is marked with a timestamp at the end. Then it removes the Tar-folder from your Pwnagotchi to save space. Now it moves over to your local machine and starts to unzip the folder. It will do now the same as the [convert2hc22000.sh](#Usage-of-downloadPCAP) script. The only thing I've added to this script is, that only \*.pcap are converted. So, there are no error messages anymore. Only the name of the log file changed to convert.log instead of log.txt. At the end it moves the log-file, the combinded.hccapx and the hccapx folder into the root directory of the handshakes.
 
 Usage of the command:
 **`$ ./downloadPCAP.sh`**
